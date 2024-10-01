@@ -21,7 +21,7 @@ type Simulator(endTime : uint64) =
     /// miles per hour
     let trainSpeed = 30.
     
-    let people = People()
+    let people = People(16)
     let mutable observers = [consoleObserver]
     
     member _.AddObserver(observer: INotificationObserver) =

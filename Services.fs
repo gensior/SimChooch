@@ -3,8 +3,8 @@ module SimChooch.Services
 open SimChooch.Data
 open SimChooch.Domain
 
-type People() =
-    let data = InMemoryArray<Person>(16)
+type People(capacity: int) =
+    let data = InMemoryArray<Person>(capacity)
     let mutable peopleArrivedCounter = 0u
     
     member this.CreatePerson =

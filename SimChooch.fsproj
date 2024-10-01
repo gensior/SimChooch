@@ -12,12 +12,15 @@
     <Compile Include="Events.fs" />
     <Compile Include="Data.fs" />
     <Compile Include="Services.fs" />
+    <Compile Include="FileReading.fs" />
+    <Compile Include="DataGeneration.fs" />
     <Compile Include="Simulation.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Argu" Version="6.2.4" />
+    <PackageReference Include="Bogus" Version="35.6.1" />
     <PackageReference Include="FsToolkit.ErrorHandling" Version="4.16.0" />
     <PackageReference Update="FSharp.Core" Version="9.0.100-beta.24422.2" />
   </ItemGroup>

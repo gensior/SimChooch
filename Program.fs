@@ -1,6 +1,7 @@
 ﻿module Program
 
 open Argu
+open SimChooch
 open SimChooch.Simulation
 
 type CliArguments =
@@ -23,7 +24,26 @@ type CliArguments =
 
 [<EntryPoint>]
 let main argv =
-    let sim = Simulator(50000UL)
-    sim.Setup()
-    sim.Run()
-    1
+    let maxTime = 100000UL
+    let numPeople = 40000
+    let numStations = 24
+    printfn " *** Stations ***"
+    let stations = DataGeneration.Stations.generate(numStations) |> Seq.toArray
+    stations
+    |> Array.iter (
+        fun s ->
+            printfn $"%02i{s.Id} ) %s{s.Name}"
+        )
+    printfn " *** People ***"
+    let peopleService = Services.People(numPeople)
+    let people = DataGeneration.People.generate peopleService stations numPeople maxTime
+    (*people
+    |> Seq.iter (
+        fun p ->
+            printfn $"%03i{p.Id} - %s{p.Name}"
+            printfn $"      (%s{Domain.secondsToTimeOfDay p.EnterTime}) %s{p.StartingPoint.Name} > %s{p.Destination.Name}"
+        *)
+    //let sim = Simulator(maxTime)
+    //sim.Setup()
+    //sim.Run()
+    0

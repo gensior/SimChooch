@@ -1,6 +1,9 @@
-StationId,DestinationId,Distance
-1,2,3
-2,3,3
-3,4,5
-4,5,3
-5,6,4
+StationId/Name
+1/First Street
+2/Second Street
+3/Third Street
+4/Fourth Street
+5/Fifth Street
+6/Sixth Street
+7/Seventh Street
+8/Eighth Street
