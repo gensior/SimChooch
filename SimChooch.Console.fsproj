@@ -3,17 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
-    <RootNamespace>SimChooch</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Common.fs" />
-    <Compile Include="Domain.fs" />
-    <Compile Include="Events.fs" />
-    <Compile Include="Data.fs" />
-    <Compile Include="Services.fs" />
-    <Compile Include="FileReading.fs" />
-    <Compile Include="DataGeneration.fs" />
     <Compile Include="Simulation.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
@@ -29,6 +21,11 @@
     <Content Include="Notes.md" />
     <Content Include="stations.txt" />
     <Content Include="TODO.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SimChooch.Domain\SimChooch.Domain.fsproj" />
+    <ProjectReference Include="..\SimChooch.Worldbuilding\SimChooch.Worldbuilding.fsproj" />
   </ItemGroup>
 
 </Project>

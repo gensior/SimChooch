@@ -1,9 +1,10 @@
 module SimChooch.Simulation
 
-open SimChooch.Data
+open SimChooch.Domain.Common
+open SimChooch.Worldbuilding.Data
 open SimChooch.Domain
-open SimChooch.Events
-open SimChooch.Services
+open SimChooch.Domain.Events
+open SimChooch.Worldbuilding.Services
 
 type INotificationObserver =
     abstract member OnNotification: Notifications -> unit
@@ -21,7 +22,7 @@ type Simulator(endTime : uint64) =
     /// miles per hour
     let trainSpeed = 30.
     
-    let people = People(16)
+    let people = PeopleService(16)
     let mutable observers = [consoleObserver]
     
     member _.AddObserver(observer: INotificationObserver) =
@@ -31,7 +32,7 @@ type Simulator(endTime : uint64) =
         observers <- observers |> List.filter ((<>) observer)
         
     member _.Notify(notification: Notifications) =
-        observers |> List.iter (_.OnNotification(notification))
+        observers |> List.iter _.OnNotification(notification)
         notification
         
     member this.PutPersonInStation (command: PutPersonInStation) =
@@ -58,7 +59,7 @@ type Simulator(endTime : uint64) =
         simTime <- command.Time
     
     member this.PullTrainOutOfStation (command: PullTrainOutOfStation) =
-        Train.putPassengersOnTrain command.Station command.Train
+        Train.putPassengersOnTrain command.Time command.Station command.Train
         let track = if command.Train.IsReversed then
                             match command.Station.Previous with
                                 | Some next -> next
