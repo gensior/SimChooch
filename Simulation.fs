@@ -89,27 +89,28 @@ type Simulator(endTime : uint64) =
             this.PullTrainOutOfStation c
             
     member this.Setup () =
+        let line1 = Line.create 1u "First Line" Direction.Southbound
         let station1 = Station.create 1u "First Street"
         let station2 = Station.create 2u "Second Street"
-        Station.connect station1 station2 1.0
+        Station.connect (station1, station2) 1.0 line1
                          
         let station3 = Station.create 3u "Third Street"
-        Station.connect station2 station3 0.4
+        Station.connect (station2, station3) 0.4 line1
         
         let station4 = Station.create 4u "Fourth Street"
-        Station.connect station3 station4 1.2
+        Station.connect (station3, station4) 1.2 line1
         
         let station5 = Station.create 5u "Fifth Street"
-        Station.connect station4 station5 0.8
+        Station.connect (station4, station5) 0.8 line1
         
         let station6 = Station.create 6u "Sixth Street"
-        Station.connect station5 station6 1.2 
+        Station.connect (station5, station6) 1.2 line1 
         
         let station7 = Station.create 7u "Seventh Street"
-        Station.connect station6 station7 0.8
+        Station.connect (station6, station7) 0.8 line1
         
         let station8 = Station.create 8u "Eighth Street"
-        Station.connect station7 station8 0.6 
+        Station.connect (station7, station8) 0.6 line1 
         
         let train = Train.create 1u 200u 4u trainSpeed
         
